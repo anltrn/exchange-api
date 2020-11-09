@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -89,7 +86,7 @@ public class ApiExceptionHandler {
     }
 	
 	@ExceptionHandler({HttpMediaTypeNotSupportedException.class})
-	public ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex,HttpHeaders headers,HttpStatus status,WebRequest request) {       
+	public ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex,WebRequest request) {       
         List<String> details = new ArrayList<String>();
         StringBuilder builder = new StringBuilder();
         builder.append(ex.getContentType());
@@ -107,7 +104,7 @@ public class ApiExceptionHandler {
     }
 	
 	@ExceptionHandler({HttpMessageNotReadableException.class})
-	 public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status,  WebRequest request) {       
+	 public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, WebRequest request) {       
          List<String> details = new ArrayList<String>();
          details.add(ex.getMessage());
          
@@ -135,7 +132,7 @@ public class ApiExceptionHandler {
 	}
 	
 	@ExceptionHandler({ NoHandlerFoundException.class })
-	public ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+	public ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, WebRequest request) {
         List<String> details = new ArrayList<String>();
         details.add(String.format("Could not find the %s method for URL %s", ex.getHttpMethod(), ex.getRequestURL()));
         
@@ -163,7 +160,7 @@ public class ApiExceptionHandler {
     }
 	 
 	@ExceptionHandler({ MethodArgumentNotValidException.class })
-	public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,  HttpStatus status,  WebRequest request) {        
+	public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, WebRequest request) {        
         List<String> details = new ArrayList<String>();
         details = ex.getBindingResult()
                     .getFieldErrors()

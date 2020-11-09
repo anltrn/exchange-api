@@ -27,7 +27,7 @@ import com.anil.turan.exchange.api.controller.ExchangeRateApiController;
 import com.anil.turan.exchange.api.controller.request.RequestForNewExchange;
 import com.anil.turan.exchange.api.controller.response.ResponseConversionList;
 import com.anil.turan.exchange.api.controller.response.ResponseExchangeRateDTO;
-import com.anil.turan.exchange.api.controller.response.ResponseForExchange;
+import com.anil.turan.exchange.api.controller.response.ResponseExchangeTransaction;
 import com.anil.turan.exchange.api.exception.ApiRequestException;
 import com.anil.turan.exchange.api.model.dao.TransactionRepository;
 import com.anil.turan.exchange.api.model.entity.Transaction;
@@ -61,9 +61,9 @@ public class ExchangeRateImpl implements ExchangeRateService {
 	}
 
 	@Override
-	public ResponseForExchange exchangeToNewCurrency(RequestForNewExchange request) {
+	public ResponseExchangeTransaction exchangeToNewCurrency(RequestForNewExchange request) {
 		Double rate = getExchangeRate(request.getBaseCurrency(), request.getTargetCurrency());
-		ResponseForExchange response = new ResponseForExchange();		
+		ResponseExchangeTransaction response = new ResponseExchangeTransaction();		
 		response.setConvertedAmount(request.getAmount().multiply(BigDecimal.valueOf(rate)));
 		Transaction entity = new Transaction();
 		entity.setTransactionDate(new Date());

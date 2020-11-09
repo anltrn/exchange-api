@@ -2,7 +2,7 @@ package com.anil.turan.exchange.api.controller.response;
 
 import java.math.BigDecimal;
 
-public class ResponseForExchange {
+public class ResponseExchangeTransaction {
 		private BigDecimal convertedAmount;
 		private Long transactionId;
 		

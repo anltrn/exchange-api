@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.anil.turan.exchange.api.controller.request.RequestForNewExchange;
 import com.anil.turan.exchange.api.controller.response.ResponseConversionList;
-import com.anil.turan.exchange.api.controller.response.ResponseForExchange;
+import com.anil.turan.exchange.api.controller.response.ResponseExchangeTransaction;
 import com.anil.turan.exchange.api.exception.ApiRequestException;
 import com.anil.turan.exchange.api.service.ExchangeRateService;
 
@@ -48,7 +48,7 @@ public class ExchangeRateApiController {
 	}
 	
 	@PostMapping("/conversionapi")
-	public ResponseEntity<ResponseForExchange> exchangeToNewCurrency(@RequestBody RequestForNewExchange request) {
+	public ResponseEntity<ResponseExchangeTransaction> exchangeToNewCurrency(@RequestBody RequestForNewExchange request) {
 		logger.info(request.toString());
 		if(request.getAmount() == null && 
 				StringUtils.isEmpty(request.getBaseCurrency()) 
@@ -64,7 +64,7 @@ public class ExchangeRateApiController {
 		else if(StringUtils.isEmpty(request.getTargetCurrency())) {
 			throw new ApiRequestException("TargetCurrency can't ben null or empty");
 		}
-		ResponseForExchange result = exchangeRateService.exchangeToNewCurrency(request);
+		ResponseExchangeTransaction result = exchangeRateService.exchangeToNewCurrency(request);
 		logger.info(result.toString());
 		return ResponseEntity.ok(result);
 	}

@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 
 import com.anil.turan.exchange.api.controller.request.RequestForNewExchange;
 import com.anil.turan.exchange.api.controller.response.ResponseConversionList;
-import com.anil.turan.exchange.api.controller.response.ResponseForExchange;
+import com.anil.turan.exchange.api.controller.response.ResponseExchangeTransaction;
 
 @Component
 public interface ExchangeRateService {
-	public Double getExchangeRate(String currencySymbol1, String currencySymbol2);
+	public Double getExchangeRate(String baseCurrency, String targetCurrency);
 	
-	public ResponseForExchange exchangeToNewCurrency(RequestForNewExchange request);
+	public ResponseExchangeTransaction exchangeToNewCurrency(RequestForNewExchange request);
 	
 	public ResponseConversionList getConversionList(Date transactionDate, Long transactionId, int page, int size);
 }

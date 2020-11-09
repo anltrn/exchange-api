@@ -25,7 +25,7 @@ import org.springframework.util.MultiValueMap;
 
 import com.anil.turan.exchange.api.controller.request.RequestForNewExchange;
 import com.anil.turan.exchange.api.controller.response.ResponseConversionList;
-import com.anil.turan.exchange.api.controller.response.ResponseForExchange;
+import com.anil.turan.exchange.api.controller.response.ResponseExchangeTransaction;
 import com.anil.turan.exchange.api.model.dao.TransactionRepository;
 import com.anil.turan.exchange.api.model.entity.Transaction;
 import com.anil.turan.exchange.api.service.ExchangeRateService;
@@ -164,7 +164,7 @@ public class WebLayerTest {
 	req .setAmount(new BigDecimal(60));
 	req.setBaseCurrency("USD");
 	req.setTargetCurrency("TRY");
-	ResponseForExchange resp = new ResponseForExchange();
+	ResponseExchangeTransaction resp = new ResponseExchangeTransaction();
 	resp .setConvertedAmount(new BigDecimal(90));
 	resp.setTransactionId(77L);
 	when(service.exchangeToNewCurrency(req)).thenReturn(resp);
