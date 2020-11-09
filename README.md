@@ -13,31 +13,27 @@ output: amount in target currency, and transaction id.<br/>
 input: transaction id or transaction date (at least one of the inputs shall be provided for each call)<br/>
 output: list of conversions filtered by the inputs and paging is required<br/>
 
-- getExchangeRate Method (GET)<br/>
+- Exchange Rate API / getExchangeRate Method (GET)<br/>
 input: String baseCurrency, String targetCurrency<br/>
 output: Double rate<br/>
-
 Url:<br/>
 /rateapi?baseCurrency=USD&targetCurrency=TRY<br/>
 
-- exchangeToNewCurrency (POST)<br/>
+- Conversion API / exchangeToNewCurrency (POST)<br/>
 input: RequestForNewExchange / String baseCurrency; String targetCurrency; BigDecimal amount<br/>
 output: ResponseForExchange / BigDecimal convertedAmount;  Long transactionId;<br/>
-<br/>
 Url:<br/>
 /conversionapi<br/>
 
-- getConversionList (GET)<br/>
+- Conversion List API /bgetConversionList (GET)<br/>
 input:Date transactionDate , Long transactionId, <br/>
 @RequestParam(value = "page", required = false, defaultValue = "1") int page, <br/>
 @RequestParam(value = "size", required = false, defaultValue = "3") int size)<br/><br/>
 output:<br/>
 ResponseConversionList /  List<Transaction> transactioList; int totalPage; int currentPage; int totalElements;<br/>
-
 Url:<br/>
 /conversionlist<br/>
 
-<br/>
 
 Swagger link:<br/>
 http://localhost:yourport/swagger-ui.html#/
